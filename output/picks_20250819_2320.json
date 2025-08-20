@@ -1,0 +1,85 @@
+{
+  "generated_at": "2025-08-19T23:20:14.731507-05:00",
+  "leagues": [
+    "NFL",
+    "CFB"
+  ],
+  "games": [
+    {
+      "league": "CFB",
+      "week_label": "",
+      "kickoff_local": "2025-08-23 06:30 PM CDT",
+      "slot": "Saturday Evening",
+      "matchup": "Fresno State at Kansas",
+      "moneyline": {
+        "Kansas": -150,
+        "Fresno State": 130
+      },
+      "spread": {
+        "team": "Kansas",
+        "line": -3.5,
+        "price": -110
+      },
+      "pick_type": "spread",
+      "pick": "Kansas -3.5 (-110)",
+      "projected_score": "Kansas 27-21",
+      "reasoning": "Key-number leverage on the spread. Kansas profile fits the trenches and QB edge. Line sits near a key number; value angle. Public may chase narratives; we're pricing the number."
+    },
+    {
+      "league": "CFB",
+      "week_label": "",
+      "kickoff_local": "2025-08-23 01:00 PM CDT",
+      "slot": "Saturday Afternoon",
+      "matchup": "UIW at Nicholls",
+      "moneyline": {
+        "Nicholls": -200,
+        "UIW": 170
+      },
+      "spread": {
+        "team": "Nicholls",
+        "line": -7.5,
+        "price": -110
+      },
+      "pick_type": "spread",
+      "pick": "Nicholls -7.5 (-110)",
+      "projected_score": "Nicholls 27-20",
+      "reasoning": "Key-number leverage on the spread. Nicholls profile fits the trenches and QB edge. Line sits near a key number; value angle. Public may chase narratives; we're pricing the number."
+    },
+    {
+      "league": "CFB",
+      "week_label": "",
+      "kickoff_local": "2025-08-23 12:00 PM CDT",
+      "slot": "Saturday Afternoon",
+      "matchup": "Iowa State at Kansas State",
+      "moneyline": {
+        "Kansas State": 105,
+        "Iowa State": -125
+      },
+      "spread": {
+        "team": "Iowa State",
+        "line": -2.5,
+        "price": -110
+      },
+      "pick_type": "spread",
+      "pick": "Iowa State -2.5 (-110)",
+      "projected_score": "Iowa State 26-21",
+      "reasoning": "Key-number leverage on the spread. Iowa State profile fits the trenches and QB edge. Line sits near a key number; value angle. Public may chase narratives; we're pricing the number."
+    }
+  ],
+  "parlays": {
+    "NFL": {
+      "league": "NFL",
+      "legs": [],
+      "notes": "Key numbers prioritized; balanced juice; matchup edges from writeups."
+    },
+    "CFB": {
+      "league": "CFB",
+      "legs": [
+        "Kansas -3.5 (-110)",
+        "Nicholls -7.5 (-110)",
+        "Iowa State -2.5 (-110)"
+      ],
+      "notes": "Key numbers prioritized; balanced juice; matchup edges from writeups."
+    }
+  }
+}

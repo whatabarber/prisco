@@ -1,0 +1,43 @@
+{
+  "generated_at": "2025-08-19T23:30:11.919547-05:00",
+  "leagues": [
+    "NFL",
+    "CFB"
+  ],
+  "games": [
+    {
+      "league": "CFB",
+      "week_label": "",
+      "kickoff_local": "2025-08-23 11:00 AM CDT",
+      "slot": "Saturday Morning",
+      "matchup": "Iowa State at Kansas State",
+      "moneyline": {
+        "Kansas State": -140,
+        "Iowa State": 120
+      },
+      "spread": {
+        "team": "Kansas State",
+        "line": -3.0,
+        "price": -110
+      },
+      "pick_type": "spread",
+      "pick": "Kansas State -3 (-110)",
+      "projected_score": "Kansas State 26-21",
+      "reasoning": "Key-number leverage on the spread. Kansas State profile fits the trenches and QB edge. Line sits near a key number; value angle. Public may chase narratives; we're pricing the number."
+    }
+  ],
+  "parlays": {
+    "NFL": {
+      "league": "NFL",
+      "legs": [],
+      "notes": "Key numbers prioritized; balanced juice; matchup edges from writeups."
+    },
+    "CFB": {
+      "league": "CFB",
+      "legs": [
+        "Kansas State -3 (-110)"
+      ],
+      "notes": "Key numbers prioritized; balanced juice; matchup edges from writeups."
+    }
+  }
+}

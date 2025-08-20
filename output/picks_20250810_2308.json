@@ -1,0 +1,20 @@
+{
+  "generated_at": "2025-08-10T23:08:28.830483-05:00",
+  "leagues": [
+    "NFL",
+    "CFB"
+  ],
+  "games": [],
+  "parlays": {
+    "NFL": {
+      "league": "NFL",
+      "legs": [],
+      "notes": "Key numbers prioritized; balanced juice; matchup edges from writeups."
+    },
+    "CFB": {
+      "league": "CFB",
+      "legs": [],
+      "notes": "Key numbers prioritized; balanced juice; matchup edges from writeups."
+    }
+  }
+}
