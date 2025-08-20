@@ -239,11 +239,19 @@ def push_to_github(commit_message=None):
     try:
         # Initialize git if needed
         if not os.path.exists(".git"):
+            print("🔧 Initializing git repository...")
             subprocess.run(["git", "init"], check=True)
             subprocess.run(["git", "remote", "add", "origin", f"https://{GITHUB_TOKEN}@github.com/{GITHUB_USERNAME}/{GITHUB_REPO}.git"], check=True)
         
         # Configure git
         setup_git_config()
+        
+        # Create main branch if it doesn't exist
+        try:
+            subprocess.run(["git", "rev-parse", "--verify", "main"], check=True, capture_output=True)
+        except subprocess.CalledProcessError:
+            print("🔧 Creating main branch...")
+            subprocess.run(["git", "checkout", "-b", "main"], check=True)
         
         # Add all changes
         subprocess.run(["git", "add", "."], check=True)
@@ -257,8 +265,26 @@ def push_to_github(commit_message=None):
         # Commit changes
         subprocess.run(["git", "commit", "-m", commit_message], check=True)
         
+        # Check if we have any commits yet
+        try:
+            subprocess.run(["git", "rev-parse", "HEAD"], check=True, capture_output=True)
+            has_commits = True
+        except subprocess.CalledProcessError:
+            has_commits = False
+        
         # Push to GitHub
-        subprocess.run(["git", "push", "-u", "origin", "main"], check=True)
+        if has_commits:
+            # Try to pull first in case the remote has changes
+            try:
+                subprocess.run(["git", "pull", "origin", "main", "--rebase"], check=True, capture_output=True)
+            except subprocess.CalledProcessError:
+                print("📝 No remote main branch yet, will create it")
+            
+            # Push with set-upstream
+            subprocess.run(["git", "push", "-u", "origin", "main"], check=True)
+        else:
+            # First push ever
+            subprocess.run(["git", "push", "-u", "origin", "main"], check=True)
         
         print("✅ Successfully pushed to GitHub")
         print(f"🚀 Vercel will auto-deploy: https://prisco.vercel.app/")
@@ -266,7 +292,17 @@ def push_to_github(commit_message=None):
         
     except subprocess.CalledProcessError as e:
         print(f"❌ Error pushing to GitHub: {e}")
-        return False
+        print("🔧 Trying alternative approach...")
+        
+        # Alternative: Force push if needed
+        try:
+            subprocess.run(["git", "push", "--set-upstream", "origin", "main", "--force"], check=True)
+            print("✅ Force push successful")
+            return True
+        except subprocess.CalledProcessError as e2:
+            print(f"❌ Force push also failed: {e2}")
+            return False
+            
     except Exception as e:
         print(f"❌ Unexpected error: {e}")
         return False

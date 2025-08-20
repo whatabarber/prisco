@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 # Current picks data (auto-updated by main.py)
 PICKS_DATA = {
-  "generated_at": "2025-08-19T23:52:14.496107-05:00",
+  "generated_at": "2025-08-19T23:56:31.320782-05:00",
   "leagues": [
     "NFL",
     "CFB"
