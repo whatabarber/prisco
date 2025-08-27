@@ -7,7 +7,7 @@ from datetime import datetime
 # GitHub Configuration
 GITHUB_USERNAME = "whatabarber"
 GITHUB_REPO = "prisco"
-GITHUB_TOKEN = "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"
+GITHUB_TOKEN = "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"
 
 def upload_static_html(payload):
     """Upload static HTML to GitHub Pages"""
@@ -134,9 +134,61 @@ def upload_static_html(payload):
             letter-spacing: 1px;
         }}
         
+        .filter-tabs {{
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0;
+        }}
+        
+        .filter-tab {{
+            padding: 12px 24px;
+            background: #2a2a2a;
+            border: 2px solid #444;
+            border-radius: 8px;
+            color: #ccc;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }}
+        
+        .filter-tab:hover {{
+            border-color: #666;
+            background: #333;
+        }}
+        
+        .filter-tab.active {{
+            background: #4CAF50;
+            border-color: #4CAF50;
+            color: white;
+        }}
+        
+        .filter-tab.nfl.active {{
+            background: #FF5722;
+            border-color: #FF5722;
+        }}
+        
+        .filter-tab.cfb.active {{
+            background: #4CAF50;
+            border-color: #4CAF50;
+        }}
+        
+        .filter-tab.parlay.active {{
+            background: #9C27B0;
+            border-color: #9C27B0;
+        }}
+        
         .picks-container {{ 
             display: grid;
             gap: 25px;
+        }}
+        
+        .pick-card.hidden {{
+            display: none;
+        }}
+        
+        .parlay-section.hidden {{
+            display: none;
         }}
         
         .pick-card {{ 
@@ -296,6 +348,13 @@ def upload_static_html(payload):
             </div>
         </div>
 
+        <div class="filter-tabs">
+            <div class="filter-tab active" onclick="filterGames('all')">All Games</div>
+            <div class="filter-tab nfl" onclick="filterGames('nfl')">NFL</div>
+            <div class="filter-tab cfb" onclick="filterGames('cfb')">CFB</div>
+            <div class="filter-tab parlay" onclick="filterGames('parlays')">Parlays</div>
+        </div>
+
         <div class="picks-container">
             {game_cards if games else '<div class="no-games"><h3>No Games Available</h3><p>Picks will appear here when games are scheduled.</p></div>'}
         </div>
@@ -313,6 +372,48 @@ def upload_static_html(payload):
         setTimeout(() => {{
             location.reload();
         }}, 600000);
+        
+        // Filter games functionality
+        function filterGames(category) {{
+            const cards = document.querySelectorAll('.pick-card');
+            const tabs = document.querySelectorAll('.filter-tab');
+            const parlaySection = document.querySelector('.parlay-section');
+            
+            // Update active tab
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (category === 'parlays') {{
+                // Hide all game cards, show only parlays
+                cards.forEach(card => card.classList.add('hidden'));
+                if (parlaySection) {{
+                    parlaySection.classList.remove('hidden');
+                }}
+            }} else {{
+                // Show/hide parlays section
+                if (parlaySection) {{
+                    parlaySection.classList.add('hidden');
+                }}
+                
+                // Filter game cards
+                cards.forEach(card => {{
+                    const league = card.querySelector('.league');
+                    if (!league) return;
+                    
+                    const leagueText = league.textContent.toLowerCase();
+                    
+                    if (category === 'all') {{
+                        card.classList.remove('hidden');
+                    }} else if (category === 'nfl' && leagueText === 'nfl') {{
+                        card.classList.remove('hidden');
+                    }} else if (category === 'cfb' && leagueText === 'cfb') {{
+                        card.classList.remove('hidden');
+                    }} else {{
+                        card.classList.add('hidden');
+                    }}
+                }});
+            }}
+        }}
         
         // Add some interactive effects
         document.addEventListener('DOMContentLoaded', function() {{
