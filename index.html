@@ -80,9 +80,52 @@
             letter-spacing: 1px;
         }
         
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0;
+        }
+        
+        .filter-tab {
+            padding: 12px 24px;
+            background: #2a2a2a;
+            border: 2px solid #444;
+            border-radius: 8px;
+            color: #ccc;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .filter-tab:hover {
+            border-color: #666;
+            background: #333;
+        }
+        
+        .filter-tab.active {
+            background: #4CAF50;
+            border-color: #4CAF50;
+            color: white;
+        }
+        
+        .filter-tab.nfl.active {
+            background: #FF5722;
+            border-color: #FF5722;
+        }
+        
+        .filter-tab.cfb.active {
+            background: #4CAF50;
+            border-color: #4CAF50;
+        }
+        
         .picks-container { 
             display: grid;
             gap: 25px;
+        }
+        
+        .pick-card.hidden {
+            display: none;
         }
         
         .pick-card { 
@@ -224,7 +267,7 @@
     <div class="container">
         <div class="header">
             <h1>🏈 Prisco-Style Picks</h1>
-            <p>Last Updated: 2025-08-26T21:38:54.871249-05:00</p>
+            <p>Last Updated: 2025-08-26T22:27:35.333633-05:00</p>
         </div>
 
         <div class="stats">
@@ -242,33 +285,39 @@
             </div>
         </div>
 
+        <div class="filter-tabs">
+            <div class="filter-tab active" onclick="filterGames('all')">All Games</div>
+            <div class="filter-tab nfl" onclick="filterGames('nfl')">NFL</div>
+            <div class="filter-tab cfb" onclick="filterGames('cfb')">CFB</div>
+        </div>
+
         <div class="picks-container">
             
         <div class="pick-card">
             <span class="league nfl">NFL</span>
             <div class="matchup">Dallas Cowboys at Philadelphia Eagles</div>
             <div class="time-slot">Thursday Night - 2025-09-04 07:21 PM CDT</div>
-            <div class="pick">Philadelphia Eagles ML (-310)</div>
-            <div class="projected"><strong>Projected:</strong> Philadelphia Eagles 28-19</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Philadelphia Eagles profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Dallas Cowboys ML (260)</div>
+            <div class="projected"><strong>Projected:</strong> Eagles 28-21</div>
+            <div class="reasoning">Dallas gets George Pickens trade boost alongside CeeDee Lamb. Dak Prescott historically plays well in big games when healthy. Eagles may have Super Bowl hangover, and Cowboys always play their rivals tough regardless of records. Road dog getting points in division rivalry.</div>
         </div>
         
         <div class="pick-card">
             <span class="league nfl">NFL</span>
             <div class="matchup">Kansas City Chiefs at Los Angeles Chargers</div>
             <div class="time-slot">Friday 07:01 PM - 2025-09-05 07:01 PM CDT</div>
-            <div class="pick">Kansas City Chiefs ML (-162)</div>
-            <div class="projected"><strong>Projected:</strong> Kansas City Chiefs 27-21</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Kansas City Chiefs profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Los Angeles Chargers ML (136)</div>
+            <div class="projected"><strong>Projected:</strong> Los Angeles Chargers 24-20</div>
+            <div class="reasoning">Kansas City Chiefs brings road warrior mentality and desperation. Can exploit home team complacency. Has specific matchup advantages in passing game.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Boise State Broncos at South Florida Bulls</div>
             <div class="time-slot">Thursday - 2025-08-28 04:30 PM CDT</div>
-            <div class="pick">Boise State Broncos ML (-225)</div>
-            <div class="projected"><strong>Projected:</strong> Boise State Broncos 27-20</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Boise State Broncos profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">South Florida Bulls ML (185)</div>
+            <div class="projected"><strong>Projected:</strong> South Florida Bulls 28-21</div>
+            <div class="reasoning">Boise State Broncos has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -276,8 +325,8 @@
             <div class="matchup">Lafayette Leopards at Bowling Green Falcons</div>
             <div class="time-slot">Thursday - 2025-08-28 05:00 PM CDT</div>
             <div class="pick">Lafayette Leopards ML (520)</div>
-            <div class="projected"><strong>Projected:</strong> Bowling Green Falcons 29-18</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Bowling Green Falcons profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Bowling Green Falcons 28-21</div>
+            <div class="reasoning">Lafayette Leopards has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -285,17 +334,17 @@
             <div class="matchup">Ohio Bobcats at Rutgers Scarlet Knights</div>
             <div class="time-slot">Thursday - 2025-08-28 05:00 PM CDT</div>
             <div class="pick">Ohio Bobcats ML (500)</div>
-            <div class="projected"><strong>Projected:</strong> Rutgers Scarlet Knights 29-18</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Rutgers Scarlet Knights profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Rutgers Scarlet Knights 28-21</div>
+            <div class="reasoning">Ohio Bobcats has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Wyoming Cowboys at Akron Zips</div>
             <div class="time-slot">Thursday Night - 2025-08-28 06:00 PM CDT</div>
-            <div class="pick">Wyoming Cowboys ML (-205)</div>
-            <div class="projected"><strong>Projected:</strong> Wyoming Cowboys 27-20</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Wyoming Cowboys profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Akron Zips ML (170)</div>
+            <div class="projected"><strong>Projected:</strong> Akron Zips 28-21</div>
+            <div class="reasoning">Wyoming Cowboys has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -303,8 +352,8 @@
             <div class="matchup">Delaware State Hornets at Delaware Blue Hens</div>
             <div class="time-slot">Thursday Night - 2025-08-28 06:00 PM CDT</div>
             <div class="pick">Delaware State Hornets ML (2400)</div>
-            <div class="projected"><strong>Projected:</strong> Delaware Blue Hens 31-17</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Delaware Blue Hens profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Delaware Blue Hens 28-21</div>
+            <div class="reasoning">Delaware State Hornets has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -312,8 +361,8 @@
             <div class="matchup">East Carolina Pirates at NC State Wolfpack</div>
             <div class="time-slot">Thursday Night - 2025-08-28 06:00 PM CDT</div>
             <div class="pick">East Carolina Pirates ML (440)</div>
-            <div class="projected"><strong>Projected:</strong> NC State Wolfpack 29-18</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. NC State Wolfpack profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> NC State 24-20</div>
+            <div class="reasoning">ECU brings high-tempo offense that can catch NC State off-guard early. Pirates have shown they can compete with ACC teams. Road warrior mentality in state rivalry game.</div>
         </div>
         
         <div class="pick-card">
@@ -321,8 +370,8 @@
             <div class="matchup">Jacksonville State Gamecocks at UCF Knights</div>
             <div class="time-slot">Thursday Night - 2025-08-28 06:00 PM CDT</div>
             <div class="pick">Jacksonville State Gamecocks ML (675)</div>
-            <div class="projected"><strong>Projected:</strong> UCF Knights 30-18</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. UCF Knights profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> UCF 31-17</div>
+            <div class="reasoning">Jacksonville State brings physicality and discipline that can disrupt UCF's rhythm. Road team motivation with nothing to lose. Gamecocks have experienced seniors who've won in hostile environments.</div>
         </div>
         
         <div class="pick-card">
@@ -330,17 +379,17 @@
             <div class="matchup">St. Francis (PA) Red Flash at UL Monroe Warhawks</div>
             <div class="time-slot">Thursday Night - 2025-08-28 06:00 PM CDT</div>
             <div class="pick">St. Francis (PA) Red Flash ML (2200)</div>
-            <div class="projected"><strong>Projected:</strong> UL Monroe Warhawks 30-17</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. UL Monroe Warhawks profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> UL Monroe 35-14</div>
+            <div class="reasoning">St. Francis has nothing to lose mentality and can play loose. FCS teams often bring extra motivation against FBS opponents. Red Flash could catch Monroe overlooking this game.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Central Arkansas Bears at Missouri Tigers</div>
             <div class="time-slot">Thursday Night - 2025-08-28 06:30 PM CDT</div>
-            <div class="pick">No bet</div>
-            <div class="projected"><strong>Projected:</strong> 24-20</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Central Arkansas Bears ML (+120)</div>
+            <div class="projected"><strong>Projected:</strong> Missouri Tigers 28-21</div>
+            <div class="reasoning">Central Arkansas Bears has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -348,8 +397,8 @@
             <div class="matchup">Elon Phoenix at Duke Blue Devils</div>
             <div class="time-slot">Thursday Night - 2025-08-28 06:30 PM CDT</div>
             <div class="pick">Elon Phoenix ML (5000)</div>
-            <div class="projected"><strong>Projected:</strong> Duke Blue Devils 31-17</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Duke Blue Devils profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Duke Blue Devils 28-21</div>
+            <div class="reasoning">Elon Phoenix has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -357,8 +406,8 @@
             <div class="matchup">UT Martin Skyhawks at Oklahoma State Cowboys</div>
             <div class="time-slot">Thursday Night - 2025-08-28 06:30 PM CDT</div>
             <div class="pick">UT Martin Skyhawks ML (720)</div>
-            <div class="projected"><strong>Projected:</strong> Oklahoma State Cowboys 30-18</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Oklahoma State Cowboys profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Oklahoma State Cowboys 28-21</div>
+            <div class="reasoning">UT Martin Skyhawks has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -366,8 +415,8 @@
             <div class="matchup">Buffalo Bulls at Minnesota Golden Gophers</div>
             <div class="time-slot">Thursday Night - 2025-08-28 07:00 PM CDT</div>
             <div class="pick">Buffalo Bulls ML (600)</div>
-            <div class="projected"><strong>Projected:</strong> Minnesota Golden Gophers 30-18</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Minnesota Golden Gophers profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Minnesota Golden Gophers 28-21</div>
+            <div class="reasoning">Buffalo Bulls has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -375,17 +424,17 @@
             <div class="matchup">Stephen F. Austin Lumberjacks at Houston Cougars</div>
             <div class="time-slot">Thursday Night - 2025-08-28 07:00 PM CDT</div>
             <div class="pick">Stephen F. Austin Lumberjacks ML (1000)</div>
-            <div class="projected"><strong>Projected:</strong> Houston Cougars 30-17</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Houston Cougars profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Houston Cougars 28-21</div>
+            <div class="reasoning">Stephen F. Austin Lumberjacks has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Nebraska Cornhuskers at Cincinnati Bearcats</div>
             <div class="time-slot">Thursday Night - 2025-08-28 08:00 PM CDT</div>
-            <div class="pick">Nebraska Cornhuskers ML (-250)</div>
-            <div class="projected"><strong>Projected:</strong> Nebraska Cornhuskers 28-20</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Nebraska Cornhuskers profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Cincinnati Bearcats ML (205)</div>
+            <div class="projected"><strong>Projected:</strong> Cincinnati Bearcats 28-21</div>
+            <div class="reasoning">Nebraska Cornhuskers has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -393,17 +442,17 @@
             <div class="matchup">Miami (OH) RedHawks at Wisconsin Badgers</div>
             <div class="time-slot">Thursday Night - 2025-08-28 08:00 PM CDT</div>
             <div class="pick">Miami (OH) RedHawks ML (625)</div>
-            <div class="projected"><strong>Projected:</strong> Wisconsin Badgers 30-18</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Wisconsin Badgers profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Wisconsin Badgers 28-21</div>
+            <div class="reasoning">Miami (OH) RedHawks has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Stony Brook Seawolves at San Diego State Aztecs</div>
             <div class="time-slot">Thursday Night - 2025-08-28 09:00 PM CDT</div>
-            <div class="pick">Stony Brook Seawolves ML (680)</div>
-            <div class="projected"><strong>Projected:</strong> San Diego State Aztecs 30-18</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. San Diego State Aztecs profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Stony Brook Seawolves ML (640)</div>
+            <div class="projected"><strong>Projected:</strong> San Diego State Aztecs 28-21</div>
+            <div class="reasoning">Stony Brook Seawolves has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -411,17 +460,17 @@
             <div class="matchup">Tarleton State Texans at Army Black Knights</div>
             <div class="time-slot">Friday 05:00 PM - 2025-08-29 05:00 PM CDT</div>
             <div class="pick">Tarleton State Texans ML (420)</div>
-            <div class="projected"><strong>Projected:</strong> Army Black Knights 29-18</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Army Black Knights profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Army Black Knights 28-21</div>
+            <div class="reasoning">Tarleton State Texans has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Appalachian State Mountaineers at Charlotte 49ers</div>
             <div class="time-slot">Friday 06:00 PM - 2025-08-29 06:00 PM CDT</div>
-            <div class="pick">Appalachian State Mountaineers ML (-258)</div>
-            <div class="projected"><strong>Projected:</strong> Appalachian State Mountaineers 28-20</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Appalachian State Mountaineers profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Charlotte 49ers ML (210)</div>
+            <div class="projected"><strong>Projected:</strong> Charlotte 49ers 28-21</div>
+            <div class="reasoning">Appalachian State Mountaineers has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -429,8 +478,8 @@
             <div class="matchup">Kennesaw State Owls at Wake Forest Demon Deacons</div>
             <div class="time-slot">Friday 06:00 PM - 2025-08-29 06:00 PM CDT</div>
             <div class="pick">Kennesaw State Owls ML (675)</div>
-            <div class="projected"><strong>Projected:</strong> Wake Forest Demon Deacons 30-18</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Wake Forest Demon Deacons profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Wake Forest Demon Deacons 28-21</div>
+            <div class="reasoning">Kennesaw State Owls has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -438,44 +487,44 @@
             <div class="matchup">Western Michigan Broncos at Michigan State Spartans</div>
             <div class="time-slot">Friday 06:00 PM - 2025-08-29 06:00 PM CDT</div>
             <div class="pick">Western Michigan Broncos ML (900)</div>
-            <div class="projected"><strong>Projected:</strong> Michigan State Spartans 30-18</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Michigan State Spartans profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Michigan State Spartans 28-21</div>
+            <div class="reasoning">Western Michigan Broncos has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Western Illinois Leathernecks at Illinois Fighting Illini</div>
             <div class="time-slot">Friday 06:30 PM - 2025-08-29 06:30 PM CDT</div>
-            <div class="pick">No bet</div>
-            <div class="projected"><strong>Projected:</strong> 24-20</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Western Illinois Leathernecks ML (+120)</div>
+            <div class="projected"><strong>Projected:</strong> Illinois Fighting Illini 28-21</div>
+            <div class="reasoning">Western Illinois Leathernecks has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Auburn Tigers at Baylor Bears</div>
             <div class="time-slot">Friday 07:00 PM - 2025-08-29 07:00 PM CDT</div>
-            <div class="pick">Auburn Tigers ML (-134)</div>
-            <div class="projected"><strong>Projected:</strong> Auburn Tigers 26-21</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Auburn Tigers profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Baylor Bears ML (112)</div>
+            <div class="projected"><strong>Projected:</strong> Baylor Bears 28-21</div>
+            <div class="reasoning">Auburn Tigers has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Georgia Tech Yellow Jackets at Colorado Buffaloes</div>
             <div class="time-slot">Friday 07:00 PM - 2025-08-29 07:00 PM CDT</div>
-            <div class="pick">Georgia Tech Yellow Jackets ML (-192)</div>
-            <div class="projected"><strong>Projected:</strong> Georgia Tech Yellow Jackets 27-20</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Georgia Tech Yellow Jackets profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Colorado Buffaloes ML (160)</div>
+            <div class="projected"><strong>Projected:</strong> Colorado Buffaloes 28-21</div>
+            <div class="reasoning">Georgia Tech Yellow Jackets has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">UNLV Rebels at Sam Houston State Bearkats</div>
             <div class="time-slot">Friday 08:30 PM - 2025-08-29 08:30 PM CDT</div>
-            <div class="pick">UNLV Rebels ML (-325)</div>
-            <div class="projected"><strong>Projected:</strong> UNLV Rebels 28-19</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. UNLV Rebels profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Sam Houston State Bearkats ML (260)</div>
+            <div class="projected"><strong>Projected:</strong> Sam Houston State Bearkats 28-21</div>
+            <div class="reasoning">UNLV Rebels has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -483,8 +532,8 @@
             <div class="matchup">Central Michigan Chippewas at San Jose State Spartans</div>
             <div class="time-slot">Friday 09:30 PM - 2025-08-29 09:30 PM CDT</div>
             <div class="pick">Central Michigan Chippewas ML (350)</div>
-            <div class="projected"><strong>Projected:</strong> San Jose State Spartans 29-19</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. San Jose State Spartans profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> San Jose State Spartans 28-21</div>
+            <div class="reasoning">Central Michigan Chippewas has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -492,8 +541,8 @@
             <div class="matchup">Ball State Cardinals at Purdue Boilermakers</div>
             <div class="time-slot">Saturday Morning - 2025-08-30 11:00 AM CDT</div>
             <div class="pick">Ball State Cardinals ML (600)</div>
-            <div class="projected"><strong>Projected:</strong> Purdue Boilermakers 30-18</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Purdue Boilermakers profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Purdue Boilermakers 28-21</div>
+            <div class="reasoning">Ball State Cardinals has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -501,17 +550,17 @@
             <div class="matchup">Florida Atlantic Owls at Maryland Terrapins</div>
             <div class="time-slot">Saturday Morning - 2025-08-30 11:00 AM CDT</div>
             <div class="pick">Florida Atlantic Owls ML (455)</div>
-            <div class="projected"><strong>Projected:</strong> Maryland Terrapins 29-18</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Maryland Terrapins profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Maryland Terrapins 28-21</div>
+            <div class="reasoning">Florida Atlantic Owls has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Merrimack Warriors at Kent State Golden Flashes</div>
             <div class="time-slot">Saturday Morning - 2025-08-30 11:00 AM CDT</div>
-            <div class="pick">Kent State Golden Flashes ML (-225)</div>
-            <div class="projected"><strong>Projected:</strong> Kent State Golden Flashes 27-20</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Kent State Golden Flashes profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Merrimack Warriors ML (184)</div>
+            <div class="projected"><strong>Projected:</strong> Kent State Golden Flashes 28-21</div>
+            <div class="reasoning">Merrimack Warriors has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -519,26 +568,26 @@
             <div class="matchup">Mississippi State Bulldogs at Southern Mississippi Golden Eagles</div>
             <div class="time-slot">Saturday Morning - 2025-08-30 11:00 AM CDT</div>
             <div class="pick">Southern Mississippi Golden Eagles ML (360)</div>
-            <div class="projected"><strong>Projected:</strong> Mississippi State Bulldogs 29-19</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Mississippi State Bulldogs profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Southern Mississippi Golden Eagles 28-21</div>
+            <div class="reasoning">Mississippi State Bulldogs has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Northwestern Wildcats at Tulane Green Wave</div>
             <div class="time-slot">Saturday Morning - 2025-08-30 11:00 AM CDT</div>
-            <div class="pick">Tulane Green Wave ML (-218)</div>
-            <div class="projected"><strong>Projected:</strong> Tulane Green Wave 27-20</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Tulane Green Wave profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Northwestern Wildcats ML (180)</div>
+            <div class="projected"><strong>Projected:</strong> Tulane Green Wave 28-21</div>
+            <div class="reasoning">Northwestern Wildcats has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Texas Longhorns at Ohio State Buckeyes</div>
             <div class="time-slot">Saturday Morning - 2025-08-30 11:00 AM CDT</div>
-            <div class="pick">Ohio State Buckeyes ML (-130)</div>
-            <div class="projected"><strong>Projected:</strong> Ohio State Buckeyes 26-21</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Ohio State Buckeyes profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Texas Longhorns ML (110)</div>
+            <div class="projected"><strong>Projected:</strong> Ohio State Buckeyes 28-21</div>
+            <div class="reasoning">Texas Longhorns has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -546,17 +595,17 @@
             <div class="matchup">Syracuse Orange at Tennessee Volunteers</div>
             <div class="time-slot">Saturday Morning - 2025-08-30 11:00 AM CDT</div>
             <div class="pick">Syracuse Orange ML (440)</div>
-            <div class="projected"><strong>Projected:</strong> Tennessee Volunteers 29-18</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Tennessee Volunteers profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Tennessee Volunteers 28-21</div>
+            <div class="reasoning">Syracuse Orange has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Toledo Rockets at Kentucky Wildcats</div>
             <div class="time-slot">Saturday Morning - 2025-08-30 11:45 AM CDT</div>
-            <div class="pick">Kentucky Wildcats ML (-325)</div>
-            <div class="projected"><strong>Projected:</strong> Kentucky Wildcats 28-19</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Kentucky Wildcats profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Toledo Rockets ML (260)</div>
+            <div class="projected"><strong>Projected:</strong> Kentucky Wildcats 28-21</div>
+            <div class="reasoning">Toledo Rockets has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -564,17 +613,17 @@
             <div class="matchup">Old Dominion Monarchs at Indiana Hoosiers</div>
             <div class="time-slot">Saturday Afternoon - 2025-08-30 01:30 PM CDT</div>
             <div class="pick">Old Dominion Monarchs ML (1300)</div>
-            <div class="projected"><strong>Projected:</strong> Indiana Hoosiers 30-17</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Indiana Hoosiers profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Indiana Hoosiers 28-21</div>
+            <div class="reasoning">Old Dominion Monarchs has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Eastern Kentucky Colonels at Louisville Cardinals</div>
             <div class="time-slot">Saturday Afternoon - 2025-08-30 02:00 PM CDT</div>
-            <div class="pick">No bet</div>
-            <div class="projected"><strong>Projected:</strong> 24-20</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Eastern Kentucky Colonels ML (+120)</div>
+            <div class="projected"><strong>Projected:</strong> Louisville Cardinals 28-21</div>
+            <div class="reasoning">Eastern Kentucky Colonels has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -582,8 +631,8 @@
             <div class="matchup">Alabama Crimson Tide at Florida State Seminoles</div>
             <div class="time-slot">Saturday Afternoon - 2025-08-30 02:30 PM CDT</div>
             <div class="pick">Florida State Seminoles ML (400)</div>
-            <div class="projected"><strong>Projected:</strong> Alabama Crimson Tide 29-19</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Alabama Crimson Tide profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Florida State Seminoles 28-21</div>
+            <div class="reasoning">Alabama Crimson Tide has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -591,8 +640,8 @@
             <div class="matchup">Marshall Thundering Herd at Georgia Bulldogs</div>
             <div class="time-slot">Saturday Afternoon - 2025-08-30 02:30 PM CDT</div>
             <div class="pick">Marshall Thundering Herd ML (2500)</div>
-            <div class="projected"><strong>Projected:</strong> Georgia Bulldogs 31-17</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Georgia Bulldogs profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Georgia Bulldogs 28-21</div>
+            <div class="reasoning">Marshall Thundering Herd has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -600,8 +649,8 @@
             <div class="matchup">South Dakota Coyotes at Iowa State Cyclones</div>
             <div class="time-slot">Saturday Afternoon - 2025-08-30 02:30 PM CDT</div>
             <div class="pick">South Dakota Coyotes ML (500)</div>
-            <div class="projected"><strong>Projected:</strong> Iowa State Cyclones 29-18</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Iowa State Cyclones profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Iowa State Cyclones 28-21</div>
+            <div class="reasoning">South Dakota Coyotes has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -609,17 +658,17 @@
             <div class="matchup">Nevada Wolf Pack at Penn State Nittany Lions</div>
             <div class="time-slot">Saturday Afternoon - 2025-08-30 02:30 PM CDT</div>
             <div class="pick">Nevada Wolf Pack ML (3000)</div>
-            <div class="projected"><strong>Projected:</strong> Penn State Nittany Lions 31-17</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Penn State Nittany Lions profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Penn State Nittany Lions 28-21</div>
+            <div class="reasoning">Nevada Wolf Pack has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Temple Owls at UMass Minutemen</div>
             <div class="time-slot">Saturday Afternoon - 2025-08-30 02:30 PM CDT</div>
-            <div class="pick">Temple Owls ML (-125)</div>
-            <div class="projected"><strong>Projected:</strong> Temple Owls 26-21</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Temple Owls profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">UMass Minutemen ML (105)</div>
+            <div class="projected"><strong>Projected:</strong> UMass Minutemen 28-21</div>
+            <div class="reasoning">Temple Owls has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -627,8 +676,8 @@
             <div class="matchup">Maine Black Bears at Liberty Flames</div>
             <div class="time-slot">Saturday Afternoon - 2025-08-30 03:00 PM CDT</div>
             <div class="pick">Maine Black Bears ML (1400)</div>
-            <div class="projected"><strong>Projected:</strong> Liberty Flames 30-17</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Liberty Flames profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Liberty Flames 28-21</div>
+            <div class="reasoning">Maine Black Bears has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -636,17 +685,17 @@
             <div class="matchup">Montana State Bobcats at Oregon Ducks</div>
             <div class="time-slot">Saturday Afternoon - 2025-08-30 03:00 PM CDT</div>
             <div class="pick">Montana State Bobcats ML (1600)</div>
-            <div class="projected"><strong>Projected:</strong> Oregon Ducks 30-17</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Oregon Ducks profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Oregon Ducks 28-21</div>
+            <div class="reasoning">Montana State Bobcats has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Albany at Iowa Hawkeyes</div>
             <div class="time-slot">Saturday Afternoon - 2025-08-30 05:00 PM CDT</div>
-            <div class="pick">No bet</div>
-            <div class="projected"><strong>Projected:</strong> 24-20</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Albany ML (+120)</div>
+            <div class="projected"><strong>Projected:</strong> Iowa Hawkeyes 28-21</div>
+            <div class="reasoning">Albany has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -654,17 +703,17 @@
             <div class="matchup">Coastal Carolina Chanticleers at Virginia Cavaliers</div>
             <div class="time-slot">Saturday Afternoon - 2025-08-30 05:00 PM CDT</div>
             <div class="pick">Coastal Carolina Chanticleers ML (360)</div>
-            <div class="projected"><strong>Projected:</strong> Virginia Cavaliers 29-19</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Virginia Cavaliers profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Virginia Cavaliers 28-21</div>
+            <div class="reasoning">Coastal Carolina Chanticleers has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Illinois State Redbirds at Oklahoma Sooners</div>
             <div class="time-slot">Saturday Afternoon - 2025-08-30 05:00 PM CDT</div>
-            <div class="pick">No bet</div>
-            <div class="projected"><strong>Projected:</strong> 24-20</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Illinois State Redbirds ML (+120)</div>
+            <div class="projected"><strong>Projected:</strong> Oklahoma Sooners 28-21</div>
+            <div class="reasoning">Illinois State Redbirds has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -672,26 +721,26 @@
             <div class="matchup">Weber State Wildcats at James Madison Dukes</div>
             <div class="time-slot">Saturday Afternoon - 2025-08-30 05:00 PM CDT</div>
             <div class="pick">Weber State Wildcats ML (1600)</div>
-            <div class="projected"><strong>Projected:</strong> James Madison Dukes 30-17</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. James Madison Dukes profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> James Madison Dukes 28-21</div>
+            <div class="reasoning">Weber State Wildcats has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Southeast Missouri State Redhawks at Arkansas State Red Wolves</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 06:00 PM CDT</div>
-            <div class="pick">Arkansas State Red Wolves ML (-365)</div>
-            <div class="projected"><strong>Projected:</strong> Arkansas State Red Wolves 28-19</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Arkansas State Red Wolves profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Southeast Missouri State Redhawks ML (285)</div>
+            <div class="projected"><strong>Projected:</strong> Arkansas State Red Wolves 28-21</div>
+            <div class="reasoning">Southeast Missouri State Redhawks has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Charleston Southern Buccaneers at Vanderbilt Commodores</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 06:00 PM CDT</div>
-            <div class="pick">No bet</div>
-            <div class="projected"><strong>Projected:</strong> 24-20</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Charleston Southern Buccaneers ML (+120)</div>
+            <div class="projected"><strong>Projected:</strong> Vanderbilt Commodores 28-21</div>
+            <div class="reasoning">Charleston Southern Buccaneers has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -699,8 +748,8 @@
             <div class="matchup">North Dakota Fighting Hawks at Kansas State Wildcats</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 06:00 PM CDT</div>
             <div class="pick">North Dakota Fighting Hawks ML (1400)</div>
-            <div class="projected"><strong>Projected:</strong> Kansas State Wildcats 30-17</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Kansas State Wildcats profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Kansas State Wildcats 28-21</div>
+            <div class="reasoning">North Dakota Fighting Hawks has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -708,17 +757,17 @@
             <div class="matchup">Nicholls State Colonels at Troy Trojans</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 06:00 PM CDT</div>
             <div class="pick">Nicholls State Colonels ML (860)</div>
-            <div class="projected"><strong>Projected:</strong> Troy Trojans 30-18</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Troy Trojans profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Troy Trojans 28-21</div>
+            <div class="reasoning">Nicholls State Colonels has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">LSU Tigers at Clemson Tigers</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 06:30 PM CDT</div>
-            <div class="pick">Clemson Tigers ML (-180)</div>
-            <div class="projected"><strong>Projected:</strong> Clemson Tigers 27-21</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Clemson Tigers profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">LSU Tigers ML (150)</div>
+            <div class="projected"><strong>Projected:</strong> Clemson Tigers 28-21</div>
+            <div class="reasoning">LSU Tigers has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -726,8 +775,8 @@
             <div class="matchup">Southeastern Louisiana Lions at Louisiana Tech Bulldogs</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 06:30 PM CDT</div>
             <div class="pick">Southeastern Louisiana Lions ML (350)</div>
-            <div class="projected"><strong>Projected:</strong> Louisiana Tech Bulldogs 29-19</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Louisiana Tech Bulldogs profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Louisiana Tech Bulldogs 28-21</div>
+            <div class="reasoning">Southeastern Louisiana Lions has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -735,8 +784,8 @@
             <div class="matchup">New Mexico Lobos at Michigan Wolverines</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 06:30 PM CDT</div>
             <div class="pick">New Mexico Lobos ML (2500)</div>
-            <div class="projected"><strong>Projected:</strong> Michigan Wolverines 31-17</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Michigan Wolverines profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Michigan Wolverines 28-21</div>
+            <div class="reasoning">New Mexico Lobos has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -744,17 +793,17 @@
             <div class="matchup">Missouri State Bears at USC Trojans</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 06:30 PM CDT</div>
             <div class="pick">Missouri State Bears ML (2500)</div>
-            <div class="projected"><strong>Projected:</strong> USC Trojans 31-17</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. USC Trojans profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> USC Trojans 28-21</div>
+            <div class="reasoning">Missouri State Bears has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">UTEP Miners at Utah State Aggies</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 06:30 PM CDT</div>
-            <div class="pick">Utah State Aggies ML (-225)</div>
-            <div class="projected"><strong>Projected:</strong> Utah State Aggies 27-20</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Utah State Aggies profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">UTEP Miners ML (185)</div>
+            <div class="projected"><strong>Projected:</strong> Utah State Aggies 28-21</div>
+            <div class="reasoning">UTEP Miners has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -762,26 +811,26 @@
             <div class="matchup">Georgia State Panthers at Ole Miss Rebels</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 06:45 PM CDT</div>
             <div class="pick">Georgia State Panthers ML (2900)</div>
-            <div class="projected"><strong>Projected:</strong> Ole Miss Rebels 31-17</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Ole Miss Rebels profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Ole Miss Rebels 28-21</div>
+            <div class="reasoning">Georgia State Panthers has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Abilene Christian Wildcats at Tulsa Golden Hurricane</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 07:00 PM CDT</div>
-            <div class="pick">Tulsa Golden Hurricane ML (-184)</div>
-            <div class="projected"><strong>Projected:</strong> Tulsa Golden Hurricane 27-20</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Tulsa Golden Hurricane profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Abilene Christian Wildcats ML (152)</div>
+            <div class="projected"><strong>Projected:</strong> Tulsa Golden Hurricane 28-21</div>
+            <div class="reasoning">Abilene Christian Wildcats has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Portland State Vikings at BYU Cougars</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 07:00 PM CDT</div>
-            <div class="pick">No bet</div>
-            <div class="projected"><strong>Projected:</strong> 24-20</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Portland State Vikings ML (+120)</div>
+            <div class="projected"><strong>Projected:</strong> BYU Cougars 28-21</div>
+            <div class="reasoning">Portland State Vikings has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -789,8 +838,8 @@
             <div class="matchup">Eastern Michigan Eagles at Texas State Bobcats</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 07:00 PM CDT</div>
             <div class="pick">Eastern Michigan Eagles ML (425)</div>
-            <div class="projected"><strong>Projected:</strong> Texas State Bobcats 29-18</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Texas State Bobcats profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Texas State Bobcats 28-21</div>
+            <div class="reasoning">Eastern Michigan Eagles has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -798,17 +847,17 @@
             <div class="matchup">Lamar Cardinals at North Texas Mean Green</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 07:00 PM CDT</div>
             <div class="pick">Lamar Cardinals ML (1280)</div>
-            <div class="projected"><strong>Projected:</strong> North Texas Mean Green 30-17</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. North Texas Mean Green profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> North Texas Mean Green 28-21</div>
+            <div class="reasoning">Lamar Cardinals has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Rice Owls at Louisiana Ragin Cajuns</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 07:00 PM CDT</div>
-            <div class="pick">Louisiana Ragin Cajuns ML (-425)</div>
-            <div class="projected"><strong>Projected:</strong> Louisiana Ragin Cajuns 29-19</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Louisiana Ragin Cajuns profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Rice Owls ML (330)</div>
+            <div class="projected"><strong>Projected:</strong> Louisiana Ragin Cajuns 28-21</div>
+            <div class="reasoning">Rice Owls has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -816,17 +865,17 @@
             <div class="matchup">Bryant Bulldogs at New Mexico State Aggies</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 08:00 PM CDT</div>
             <div class="pick">Bryant Bulldogs ML (680)</div>
-            <div class="projected"><strong>Projected:</strong> New Mexico State Aggies 30-18</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. New Mexico State Aggies profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> New Mexico State Aggies 28-21</div>
+            <div class="reasoning">Bryant Bulldogs has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">East Texas A&M Lions at SMU Mustangs</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 08:00 PM CDT</div>
-            <div class="pick">No bet</div>
-            <div class="projected"><strong>Projected:</strong> 24-20</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">East Texas A&M Lions ML (+120)</div>
+            <div class="projected"><strong>Projected:</strong> SMU Mustangs 28-21</div>
+            <div class="reasoning">East Texas A&M Lions has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -834,17 +883,17 @@
             <div class="matchup">UTSA Roadrunners at Texas A&M Aggies</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 08:00 PM CDT</div>
             <div class="pick">UTSA Roadrunners ML (1300)</div>
-            <div class="projected"><strong>Projected:</strong> Texas A&M Aggies 30-17</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Texas A&M Aggies profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Texas A&M Aggies 28-21</div>
+            <div class="reasoning">UTSA Roadrunners has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Georgia Southern Eagles at Fresno State Bulldogs</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 08:30 PM CDT</div>
-            <div class="pick">Georgia Southern Eagles ML (-125)</div>
-            <div class="projected"><strong>Projected:</strong> Georgia Southern Eagles 26-21</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Georgia Southern Eagles profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Fresno State Bulldogs ML (105)</div>
+            <div class="projected"><strong>Projected:</strong> Fresno State Bulldogs 28-21</div>
+            <div class="reasoning">Georgia Southern Eagles has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -852,8 +901,8 @@
             <div class="matchup">Northern Arizona Lumberjacks at Arizona State Sun Devils</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 09:00 PM CDT</div>
             <div class="pick">Northern Arizona Lumberjacks ML (3000)</div>
-            <div class="projected"><strong>Projected:</strong> Arizona State Sun Devils 31-17</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Arizona State Sun Devils profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Arizona State Sun Devils 28-21</div>
+            <div class="reasoning">Northern Arizona Lumberjacks has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -861,8 +910,8 @@
             <div class="matchup">Idaho Vandals at Washington State Cougars</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 09:00 PM CDT</div>
             <div class="pick">Idaho Vandals ML (400)</div>
-            <div class="projected"><strong>Projected:</strong> Washington State Cougars 29-19</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Washington State Cougars profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Washington State Cougars 28-21</div>
+            <div class="reasoning">Idaho Vandals has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -870,17 +919,17 @@
             <div class="matchup">Hawaii Rainbow Warriors at Arizona Wildcats</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 09:30 PM CDT</div>
             <div class="pick">Hawaii Rainbow Warriors ML (575)</div>
-            <div class="projected"><strong>Projected:</strong> Arizona Wildcats 29-18</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Arizona Wildcats profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Arizona Wildcats 28-21</div>
+            <div class="reasoning">Hawaii Rainbow Warriors has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">California Golden Bears at Oregon State Beavers</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 09:30 PM CDT</div>
-            <div class="pick">Oregon State Beavers ML (-125)</div>
-            <div class="projected"><strong>Projected:</strong> Oregon State Beavers 26-21</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Oregon State Beavers profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">California Golden Bears ML (105)</div>
+            <div class="projected"><strong>Projected:</strong> Oregon State Beavers 28-21</div>
+            <div class="reasoning">California Golden Bears has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
@@ -888,49 +937,49 @@
             <div class="matchup">Colorado State Rams at Washington Huskies</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 10:00 PM CDT</div>
             <div class="pick">Colorado State Rams ML (1200)</div>
-            <div class="projected"><strong>Projected:</strong> Washington Huskies 30-17</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Washington Huskies profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="projected"><strong>Projected:</strong> Washington Huskies 28-21</div>
+            <div class="reasoning">Colorado State Rams has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Utah Utes at UCLA Bruins</div>
             <div class="time-slot">Saturday Evening - 2025-08-30 10:00 PM CDT</div>
-            <div class="pick">Utah Utes ML (-238)</div>
-            <div class="projected"><strong>Projected:</strong> Utah Utes 28-20</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Utah Utes profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">UCLA Bruins ML (195)</div>
+            <div class="projected"><strong>Projected:</strong> UCLA Bruins 28-21</div>
+            <div class="reasoning">Utah Utes has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Virginia Tech Hokies at South Carolina Gamecocks</div>
             <div class="time-slot">Sunday Early - 2025-08-31 02:00 PM CDT</div>
-            <div class="pick">South Carolina Gamecocks ML (-310)</div>
-            <div class="projected"><strong>Projected:</strong> South Carolina Gamecocks 28-19</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. South Carolina Gamecocks profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Virginia Tech Hokies ML (250)</div>
+            <div class="projected"><strong>Projected:</strong> South Carolina Gamecocks 28-21</div>
+            <div class="reasoning">Virginia Tech Hokies has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">Notre Dame Fighting Irish at Miami Hurricanes</div>
             <div class="time-slot">Sunday Late - 2025-08-31 06:30 PM CDT</div>
-            <div class="pick">Notre Dame Fighting Irish ML (-137)</div>
-            <div class="projected"><strong>Projected:</strong> Notre Dame Fighting Irish 26-21</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. Notre Dame Fighting Irish profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">Miami Hurricanes ML (114)</div>
+            <div class="projected"><strong>Projected:</strong> Miami Hurricanes 28-21</div>
+            <div class="reasoning">Notre Dame Fighting Irish has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         <div class="pick-card">
             <span class="league cfb">CFB</span>
             <div class="matchup">TCU Horned Frogs at North Carolina Tar Heels</div>
             <div class="time-slot">Monday Night - 2025-09-01 07:00 PM CDT</div>
-            <div class="pick">TCU Horned Frogs ML (-162)</div>
-            <div class="projected"><strong>Projected:</strong> TCU Horned Frogs 27-21</div>
-            <div class="reasoning">Moneyline aligns with matchup edge. TCU Horned Frogs profile fits the trenches and QB edge. Public may chase narratives; we're pricing the number.</div>
+            <div class="pick">North Carolina Tar Heels ML (136)</div>
+            <div class="projected"><strong>Projected:</strong> North Carolina Tar Heels 28-21</div>
+            <div class="reasoning">TCU Horned Frogs has hunger and motivation as road underdog. Can play with nothing-to-lose mentality. May have specific schematic advantages.</div>
         </div>
         
         </div>
 
-        
+        <div class="parlay-section"><h2>🎯 3-Leg Parlays</h2><h3>CFB Parlay</h3><div class="parlay-leg">Akron Zips +5.5</div><div class="parlay-leg">Delaware Blue Hens -29.5</div><div class="parlay-leg">East Carolina Pirates +14.0</div></div>
 
         <div class="footer">
             <p>Auto-generated by Prisco-Style Picks System</p>
@@ -943,6 +992,34 @@
         setTimeout(() => {
             location.reload();
         }, 600000);
+        
+        // Filter games functionality
+        function filterGames(category) {
+            const cards = document.querySelectorAll('.pick-card');
+            const tabs = document.querySelectorAll('.filter-tab');
+            
+            // Update active tab
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter cards
+            cards.forEach(card => {
+                const league = card.querySelector('.league');
+                if (!league) return;
+                
+                const leagueText = league.textContent.toLowerCase();
+                
+                if (category === 'all') {
+                    card.classList.remove('hidden');
+                } else if (category === 'nfl' && leagueText === 'nfl') {
+                    card.classList.remove('hidden');
+                } else if (category === 'cfb' && leagueText === 'cfb') {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
         
         // Add some interactive effects
         document.addEventListener('DOMContentLoaded', function() {
