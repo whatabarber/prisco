@@ -119,12 +119,21 @@
             border-color: #4CAF50;
         }
         
+        .filter-tab.parlay.active {
+            background: #9C27B0;
+            border-color: #9C27B0;
+        }
+        
         .picks-container { 
             display: grid;
             gap: 25px;
         }
         
         .pick-card.hidden {
+            display: none;
+        }
+        
+        .parlay-section.hidden {
             display: none;
         }
         
@@ -267,7 +276,7 @@
     <div class="container">
         <div class="header">
             <h1>🏈 Prisco-Style Picks</h1>
-            <p>Last Updated: 2025-08-26T22:27:35.333633-05:00</p>
+            <p>Last Updated: 2025-08-26T22:38:49.850378-05:00</p>
         </div>
 
         <div class="stats">
@@ -289,6 +298,7 @@
             <div class="filter-tab active" onclick="filterGames('all')">All Games</div>
             <div class="filter-tab nfl" onclick="filterGames('nfl')">NFL</div>
             <div class="filter-tab cfb" onclick="filterGames('cfb')">CFB</div>
+            <div class="filter-tab parlay" onclick="filterGames('parlays')">Parlays</div>
         </div>
 
         <div class="picks-container">
@@ -997,28 +1007,42 @@
         function filterGames(category) {
             const cards = document.querySelectorAll('.pick-card');
             const tabs = document.querySelectorAll('.filter-tab');
+            const parlaySection = document.querySelector('.parlay-section');
             
             // Update active tab
             tabs.forEach(tab => tab.classList.remove('active'));
             event.target.classList.add('active');
             
-            // Filter cards
-            cards.forEach(card => {
-                const league = card.querySelector('.league');
-                if (!league) return;
-                
-                const leagueText = league.textContent.toLowerCase();
-                
-                if (category === 'all') {
-                    card.classList.remove('hidden');
-                } else if (category === 'nfl' && leagueText === 'nfl') {
-                    card.classList.remove('hidden');
-                } else if (category === 'cfb' && leagueText === 'cfb') {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
+            if (category === 'parlays') {
+                // Hide all game cards, show only parlays
+                cards.forEach(card => card.classList.add('hidden'));
+                if (parlaySection) {
+                    parlaySection.classList.remove('hidden');
                 }
-            });
+            } else {
+                // Show/hide parlays section
+                if (parlaySection) {
+                    parlaySection.classList.add('hidden');
+                }
+                
+                // Filter game cards
+                cards.forEach(card => {
+                    const league = card.querySelector('.league');
+                    if (!league) return;
+                    
+                    const leagueText = league.textContent.toLowerCase();
+                    
+                    if (category === 'all') {
+                        card.classList.remove('hidden');
+                    } else if (category === 'nfl' && leagueText === 'nfl') {
+                        card.classList.remove('hidden');
+                    } else if (category === 'cfb' && leagueText === 'cfb') {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            }
         }
         
         // Add some interactive effects
